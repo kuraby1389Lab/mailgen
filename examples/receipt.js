@@ -2,13 +2,12 @@ var Mailgen = require('../');
 
 // Configure mailgen by setting a theme and your product info
 var mailGenerator = new Mailgen({
-    theme: 'default',
+    theme: 'stethee_white',
     product: {
         // Appears in header & footer of e-mails
-        name: 'Mailgen',
-        link: 'https://mailgen.js/'
-        // Optional logo
-        // logo: 'https://mailgen.js/img/logo.png'
+        name: 'Stethee',
+        link: 'https://stethee.com/',
+        logo: 'https://image.ibb.co/fTvt17/dark_3x.png'
     }
 });
 
@@ -20,9 +19,9 @@ var email = {
         table: {
             data: [
                 {
-                    item: 'Node.js',
-                    description: 'Event-driven I/O server-side JavaScript environment based on V8.',
-                    price: '$10.99'
+                    item: 'Stethee Pro',
+                    description: 'Stethee Pro device',
+                    price: '$10.99',
                 },
                 {
                     item: 'Mailgen',
@@ -66,7 +65,7 @@ require('fs').writeFileSync('preview.txt', emailText, 'utf8');
 
 // `emailBody` now contains the HTML body,
 // and `emailText` contains the textual version.
-// 
+//
 // It's up to you to send the e-mail.
 // Check out nodemailer to accomplish this:
 // https://nodemailer.com/
