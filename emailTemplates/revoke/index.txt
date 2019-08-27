@@ -1,0 +1,14 @@
+Hi Khoa Tran,
+
+{user name} now has access to your M3DICINE Stethee Pro health data.        
+You can revoke {user name} access at anytime by clicking the “Revoke Access” button.        
+If you did not approve this connection, or you have approved this by mistake. Please revoke the connection immediately.        
+
+
+#        
+
+Best Wishes,
+M3DICINE Support Team,
+Stethee
+
+&copy; 2019 <a href="https://stethee.com/" target="_blank">Stethee</a>. All rights reserved.

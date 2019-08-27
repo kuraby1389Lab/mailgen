@@ -24,7 +24,7 @@ function Mailgen(options) {
 
     // Support for custom copyright (fallback to sensible default)
     this.product.copyright = this.product.copyright || '&copy; ' + new Date().getFullYear() + ' <a href="' + this.product.link + '" target="_blank">' + this.product.name + '</a>. All rights reserved.';
-
+    
     // Cache theme files for later to avoid spamming fs.readFileSync()
     this.cacheThemes();
 }
@@ -88,7 +88,7 @@ Mailgen.prototype.generatePlaintext = function (params) {
     // Definition of the <br /> tag as a regex pattern
     var breakTag = /(?:\<br\s*\/?\>)/g;
     var breakTagPattern = new RegExp(breakTag);
-    
+
     // Check the plaintext for html break tag, maintains backwards compatiblity
     if (breakTagPattern.test(this.cachedPlaintextTheme)) {
         // Strip all linebreaks from the rendered plaintext

@@ -1,0 +1,13 @@
+Hi Khoa Tran,
+
+You have received this email because a password reset request for your account was received.        
+
+Click the button below to reset your password:        
+https://mailgen.js/reset?s=b350163a1a010d9729feb74992c1a010        
+
+If you did not request a password reset, no further action is required on your part.        
+
+Yours truly,
+Stethee
+
+&copy; 2019 <a href="https://stethee.com/" target="_blank">Stethee</a>. All rights reserved.

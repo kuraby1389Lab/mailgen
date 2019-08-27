@@ -1,24 +1,24 @@
 <%
 if (locals.action) {
-    locals.action.forEach(function(actionItem) {
-        // Make it possible to override action button color (specify fallback color if no color specified)
-        if (!actionItem.button.color) {
-            actionItem.button.color = 'blue';
-        }
-        deprecatedColorToHex(actionItem.button);
-    });
+  locals.action.forEach(function(actionItem) {
+    // Make it possible to override action button color (specify fallback color if no color specified)
+    if (!actionItem.button.color) {
+      actionItem.button.color = 'blue';
+    }
+    deprecatedColorToHex(actionItem.button);
+  });
 
   // Convert deprecated red/green/blue action button color to hex since we switched to a hex-based button color
   function deprecatedColorToHex(button) {
-      if (button.color === 'red') {
-            button.color = '#DC4D2F';
-      }
-      else if (button.color === 'green') {
-            button.color = '#22BC66';
-      }
-      else if (button.color === 'blue') {
-            button.color = '#3869D4';
-      }
+    if (button.color === 'red') {
+      button.color = '#DC4D2F';
+    }
+    else if (button.color === 'green') {
+      button.color = '#22BC66';
+    }
+    else if (button.color === 'blue') {
+      button.color = '#3869D4';
+    }
   }
 }
 %>
@@ -36,16 +36,11 @@ if (locals.action) {
     }
     body {
       width: 100% !important;
-      height:100vh;
+      height: 100%;
       margin: 0;
       line-height: 1.4;
-      background-color: rgb(255, 255, 255);
       color: #74787E;
       -webkit-text-size-adjust: none;
-      /* background-image:url("https://preview.ibb.co/gsbQyn/b17f94321007fa96bc5438d26ec78608.png"); */
-      background-repeat: no-repeat;
-      background-size:cover;
-
     }
     a {
       color: #3869D4;
@@ -56,7 +51,6 @@ if (locals.action) {
       width: 100%;
       margin: 0;
       padding: 0;
-      /* background-color: white; */
     }
     .email-content {
       width: 100%;
@@ -66,7 +60,8 @@ if (locals.action) {
 
     /* Masthead ----------------------- */
     .email-masthead {
-      /* background-color: white; */
+      padding: 25px 0;
+      text-align: center;
     }
     .email-masthead_logo {
       max-width: 400px;
@@ -75,13 +70,11 @@ if (locals.action) {
     .email-masthead_name {
       font-size: 16px;
       font-weight: bold;
-      color: #2F3133;
       text-decoration: none;
       text-shadow: 0 1px 0 white;
     }
     .email-logo {
       max-height: 50px;
-      margin: 0
     }
 
     /* Body ------------------------------ */
@@ -91,7 +84,7 @@ if (locals.action) {
       padding: 0;
       border-top: 1px solid #EDEFF2;
       border-bottom: 1px solid #EDEFF2;
-      /* background-color: #FFF; */
+      background-color: #FFF;
     }
     .email-body_inner {
       width: 570px;
@@ -102,17 +95,14 @@ if (locals.action) {
       width: 570px;
       margin: 0 auto;
       padding: 0;
-      text-align: center;
     }
     .email-footer p {
       color: #AEAEAE;
     }
     .body-action {
       width: 100%;
-      margin-bottom: 15px;
-      margin-top: 0px;
+      margin: 0 auto;
       padding: 0;
-      text-align: center;
     }
     .body-dictionary {
       width: 100%;
@@ -140,6 +130,12 @@ if (locals.action) {
     .content-cell {
       padding: 35px;
     }
+    .footer-cell{
+      padding-top:35px;
+      padding-bottom:35px;
+      width:100%
+    }
+
     .align-right {
       text-align: right;
     }
@@ -207,16 +203,60 @@ if (locals.action) {
     /* Buttons ------------------------------ */
     .button {
       display: inline-block;
-      width: 200px;
-      background-color: #3869D4;
+      padding-left:20px;
+      padding-right:20px;
+      max-width: 250px;
       border-radius: 3px;
       color: #ffffff;
-      font-size: 15px;
       line-height: 45px;
       text-align: center;
       text-decoration: none;
       -webkit-text-size-adjust: none;
       mso-hide: all;
+    }
+
+    .st_intro{
+
+    }
+
+    .st_outtro{
+
+    }
+
+
+    .st_actions{
+
+
+    }
+
+
+    .st_signature{
+      margin-top:30px;
+    }
+
+    .st_button{
+      float:left;
+      margin-right:10px;
+      margin-top:20px
+    }
+
+    .st_addresses{
+      font-size:10px;
+    }
+
+    .st_rainbow {
+      width: 100%;
+      margin: 0 auto;
+      height: 1px;
+      background: red;
+      background: -webkit-linear-gradient(left, red , yellow, green, cyan, blue, violet,red , yellow, green, cyan, blue, violet);
+      background: -o-linear-gradient(right, red, yellow, green, cyan, blue, violet,red , yellow, green, cyan, blue, violet);
+      background: -moz-linear-gradient(right, red, yellow, green, cyan, blue, violet,red , yellow, green, cyan, blue, violet);
+      background: linear-gradient(to right, red , yellow, green, cyan, blue, violet,red , yellow, green, cyan, blue, violet);
+      background-size: 200%;
+      -webkit-animation: rainbow_animation 10s ease infinite;
+      -moz-animation: rainbow_animation 10s ease infinite;
+      animation: rainbow_animation 10s ease infinite;
     }
 
     /*Media Queries ------------------------------ */
@@ -231,8 +271,6 @@ if (locals.action) {
         width: 100% !important;
       }
     }
-
-    /*Animation ------------------------------ */
   </style>
 </head>
 <body dir="<%- textDirection %>">
@@ -243,151 +281,198 @@ if (locals.action) {
           <!-- Logo -->
           <tr>
             <td class="email-masthead">
-              <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td class="content-cell">
-                  <a  href="<%- product.link %>" target="_blank">
-                    <% if (locals.product.logo) { %>
-                      <img src="<%- product.logo %>" class="email-logo" />
-                    <% } else { %>
-                      <%- product.name %>
+              <a class="email-masthead_name" href="<%- product.link %>" target="_blank">
+                <% if (locals.product.logo) { %>
+                  <img src="<%- product.logo %>" class="email-logo" />
+                  <% } else { %>
+                    <%- product.name %>
                     <% } %>
-                    </a>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
+                  </a>
+                </td>
+              </tr>
 
 
-          <!-- Email Body -->
-          <tr>
-            <td class="email-body" width="100%">
-              <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0">
-                <!-- Body content -->
-                <tr>
-                  <td class="content-cell">
-                    <h1><%- title %></h1>
-                    <% if (locals.intro) { %>
-                      <% intro.forEach(function (introItem) { -%>
-                        <p><%- introItem %></p>
-                      <% }) -%>
-                    <% } %>
+              <!-- Email Body -->
+              <tr>
+                <td class="email-body" width="100%">
+                  <div class="st_rainbow"></div>
+                  <table class="email-body_inner" width="570" cellpadding="0" cellspacing="0">
+                    <!-- Body content -->
+                    <tr>
+                      <td class="content-cell">
+                        <div class="st_title">
+                          <h1><%- title %></h1>
+                        </div>
 
-                    <!-- Dictionary -->
-                    <% if (locals.dictionary) { %>
-                    <dl class="body-dictionary">
-                      <% for (item in dictionary) { -%>
-                        <dt><%- item.charAt(0).toUpperCase() + item.slice(1) %>:</dt>
-                        <dd><%- dictionary[item] %></dd>
-                      <% } -%>
-                    </dl>
-                    <% } %>
-
-                    <!-- Table -->
-                    <% if (locals.table) { %>
-                    <table class="data-wrapper" width="100%" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td colspan="2">
-                          <table class="data-table" width="100%" cellpadding="0" cellspacing="0">
-                            <tr>
-                              <% for (var column in table.data[0]) {%>
-                                <th
-                                  <% if(locals.table.columns && locals.table.columns.customWidth && locals.table.columns.customWidth[column]) { %>
-                                      width="<%= table.columns.customWidth[column] %>"
-                                  <% } %>
-                                  <% if(locals.table.columns && locals.table.columns.customAlignment && locals.table.columns.customAlignment[column]) { %>
-                                      style="text-align:<%= table.columns.customAlignment[column] %>"
-                                  <% } %>
-                                >
-                                  <p><%- column.charAt(0).toUpperCase() + column.slice(1) %></p>
-                                </th>
+                        <!-- intro -->
+                        <div class="st_intro">
+                          <% if (locals.intro) { %>
+                            <% intro.forEach(function (introItem) { -%>
+                              <p><%- introItem %></p>
+                              <% }) -%>
                               <% } %>
-                            </tr>
-                            <% for (var i in table.data) {%>
-                            <tr>
-                              <% for (var column in table.data[i]) {%>
-                                <td
-                                    <% if(locals.table.columns && locals.table.columns.customAlignment && locals.table.columns.customAlignment[column]) { %>
-                                        style="text-align:<%= table.columns.customAlignment[column] %>"
-                                    <% } %>
-                                >
-                                  <%- table.data[i][column] %>
-                                </td>
-                              <% } %>
-                            </tr>
-                            <% } %>
-                          </table>
-                        </td>
-                      </tr>
-                    </table>
-                    <% } %>
-
-                    <!-- Action -->
-                    <% if (locals.action) { %>
-                      <% action.forEach(function (actionItem) { -%>
-                          <p><%- actionItem.instructions %></p>
-                          <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
-                            <tr>
-                              <td align="left">
-                                <div>
-                                  <a href="<%- actionItem.button.link %>" class="button" style="background-color: <%- actionItem.button.color %>" target="_blank"><%- actionItem.button.text %></a>
+                            </div>
+                            <!-- Dictionary -->
+                            <div>
+                              <% if (locals.dictionary) { %>
+                                <dl class="body-dictionary">
+                                  <% for (item in dictionary) { -%>
+                                    <dt><%- item.charAt(0).toUpperCase() + item.slice(1) %>:</dt>
+                                    <dd><%- dictionary[item] %></dd>
+                                    <% } -%>
+                                  </dl>
+                                  <% } %>
                                 </div>
-                              </td>
-                            </tr>
-                          </table>
-                      <% }) -%>
-                    <% } %>
+                                <!-- Table -->
+                                <% if (locals.table) { %>
+                                  <table class="data-wrapper" width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                      <td colspan="2">
+                                        <table class="data-table" width="100%" cellpadding="0" cellspacing="0">
+                                          <tr>
+                                            <% for (var column in table.data[0]) {%>
+                                              <th
+                                              <% if(locals.table.columns && locals.table.columns.customWidth && locals.table.columns.customWidth[column]) { %>
+                                                width="<%= table.columns.customWidth[column] %>"
+                                                <% } %>
+                                                <% if(locals.table.columns && locals.table.columns.customAlignment && locals.table.columns.customAlignment[column]) { %>
+                                                  style="text-align:<%= table.columns.customAlignment[column] %>"
+                                                  <% } %>
+                                                  >
+                                                  <p><%- column.charAt(0).toUpperCase() + column.slice(1) %></p>
+                                                </th>
+                                                <% } %>
+                                              </tr>
+                                              <% for (var i in table.data) {%>
+                                                <tr>
+                                                  <% for (var column in table.data[i]) {%>
+                                                    <td
+                                                    <% if(locals.table.columns && locals.table.columns.customAlignment && locals.table.columns.customAlignment[column]) { %>
+                                                      style="text-align:<%= table.columns.customAlignment[column] %>"
+                                                      <% } %>
+                                                      >
+                                                      <%- table.data[i][column] %>
+                                                    </td>
+                                                    <% } %>
+                                                  </tr>
+                                                  <% } %>
+                                                </table>
+                                              </td>
+                                            </tr>
+                                          </table>
+                                          <% } %>
 
-                    <!-- Support for Gmail Go-To Actions -->
-                    <% if (locals.goToAction) { %>
-                      <script type="application/ld+json">
-                      {
-                        "@context": "http://schema.org",
-                        "@type": "EmailMessage",
-                        "potentialAction": {
-                          "@type": "ViewAction",
-                          "url": "<%- goToAction.link %>",
-                          "target": "<%- goToAction.link %>",
-                          "name": "<%- goToAction.text %>"
-                        },
-                        "description": "<%- goToAction.description %>"
-                      }
-                      </script>
-                    <% } %>
+                                          <div class="st_actions">
+                                            <% if (locals.action) { %>
+                                              <% action.forEach(function (actionItem) { -%>
+                                                <p><%- actionItem.instructions %></p>
+                                              <% }) -%>
+                                            <% } %>
 
-                    <% if (locals.outro) { %>
-                      <% outro.forEach(function (outroItem) { -%>
-                        <p><%- outroItem %></p>
-                      <% }) -%>
-                    <% } %>
+                                            <table class="body-action" align="center">
+                                              <tr>
+                                                <td align="left">
 
-                    <p>
-                      <%- signature %>,
-                      <br>
-                      <%- product.name %>
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td class="content-cell">
-                    <p class="sub center">
-                      <%- product.copyright %>
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>
+                                                  <!-- Action -->
+                                                  <% if (locals.action) { %>
+                                                    <% action.forEach(function (actionItem) { -%>
+                                                      <!--[if mso]>
+                                                      <center>
+                                                      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="<%- actionItem.button.link %>" style="height: 45px; v-text-anchor: middle; width: 200px;" arcsize="10%" stroke="f" fillcolor="<%- actionItem.button.color %>">
+                                                      <w:anchorlock/>
+                                                      <center style="color: #ffffff; font-family: sans-serif; font-size: 15px;">
+                                                      <%- actionItem.button.text %>
+                                                    </center>
+                                                  </v:roundrect>
+                                                </center>
+                                                <![endif]-->
+                                                <![if !mso]>
+                                                  <div class="st_button">
+                                                    <a  href="<%- actionItem.button.link %>" class="button" target="_blank" style="background-color: <%- actionItem.button.color %>;">
+                                                      <%- actionItem.button.text %>
+                                                    </a>
+                                                  </div>
+                                                <![endif]>
+                                                <% }) -%>
+                                                <% } %>
+
+                                              </td>
+                                            </tr>
+
+                                          </table>
+
+                                        </div>
+                                        <!-- Support for Gmail Go-To Actions -->
+                                        <% if (locals.goToAction) { %>
+                                          <script type="application/ld+json">
+                                            {
+                                              "@context": "http://schema.org",
+                                              "@type": "EmailMessage",
+                                              "potentialAction": {
+                                                "@type": "ViewAction",
+                                                "url": "<%- goToAction.link %>",
+                                                "target": "<%- goToAction.link %>",
+                                                "name": "<%- goToAction.text %>"
+                                              },
+                                              "description": "<%- goToAction.description %>"
+                                            }
+                                          </script>
+                                          <% } %>
+                                          <div class="st_outtro">
+                                            <% if (locals.outro) { %>
+                                              <% outro.forEach(function (outroItem) { -%>
+                                                <p><%- outroItem %></p>
+                                                <% }) -%>
+                                                <% } %>
+                                              </div>
+                                              <div class="st_signature">
+                                                <p>
+                                                  <%- signature %>
+                                                </p>
+                                              </div>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </td>
+                                    </tr>
+                                    <!--End of email body-->
+
+                                    <tr>
+                                      <td>
+                                        <table class="email-footer"  width="570" cellpadding="0" cellspacing="0">
+                                          <tr>
+
+                                          <div class="st_rainbow"></div>
+                                          </tr>
+                                          <tr width="100%" class="st_addresses">
+                                            <td style="padding-left:35px;padding-right:35px;padding-top:35px">
+                                              <div style='display:inline-block;height:30px;width:49%;' align="left">
+                                                M3DICINE<br>
+                                                88 Brandl Street, Eight Mile Plains<br>
+                                                Queensland, Australia
+                                              </div>
+                                              <div style='display:inline-block;height:30px;width:49%' align="right">
+                                                <a style="text-decoration:none !important;color:#0087CC" href="www.stethee.com/privacy">Privacy Policy</a><br>
+                                                <a style="text-decoration:none !important;color:#0087CC" href="www.stethee.com/privacy">Terms and Conditions</a><br>
+                                                <a style="text-decoration:none !important;color:#0087CC" href="www.stethee.com/privacy">www.stethee.com</a>
+                                              </div>
+                                            </td>
+                                          </tr>
+
+                                          <tr width="100%" align="center" >
+                                            <td class="footer-cell">
+                                              <p class="sub center">
+                                                <%- product.copyright %>
+                                              </p>
+                                            </td>
+                                          </tr>
+                                        </table>
+                                      </td>
+                                    </tr>
+
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </body>
+                          </html>

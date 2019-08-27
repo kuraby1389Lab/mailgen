@@ -44,13 +44,13 @@ var emailBody = mailGenerator.generate(email);
 var emailText = mailGenerator.generatePlaintext(email);
 var fs = require('fs')
 // Optionally, preview the generated HTML e-mail by writing it to a local file
-fs.writeFile('preview.html', emailBody, 'utf8',function (err) {
+fs.writeFile('wellcome.html', emailBody, 'utf8',function (err) {
   if (err) {
     return console.log(err);
   }
   console.log("The file was saved!");
 });
-fs.writeFile('preview.txt', emailText, 'utf8',function (err) {
+fs.writeFile('wellcome.txt', emailText, 'utf8',function (err) {
   if (err) {
     return console.log(err);
   }

@@ -1,4 +1,4 @@
-var Mailgen = require('../');
+var Mailgen = require('../../');
 
 // Configure mailgen by setting a theme and your product info
 var mailGenerator = new Mailgen({
@@ -60,8 +60,8 @@ var emailBody = mailGenerator.generate(email);
 var emailText = mailGenerator.generatePlaintext(email);
 
 // Optionally, preview the generated HTML e-mail by writing it to a local file
-require('fs').writeFileSync('preview.html', emailBody, 'utf8');
-require('fs').writeFileSync('preview.txt', emailText, 'utf8');
+require('fs').writeFileSync('reciept.html', emailBody, 'utf8');
+require('fs').writeFileSync('reciept.txt', emailText, 'utf8');
 
 // `emailBody` now contains the HTML body,
 // and `emailText` contains the textual version.
