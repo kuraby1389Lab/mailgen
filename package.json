@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "doctor_patient":"cd emailTemplates/doctor-patient && node doctor_patient.js",
-    "doctor_share_patient":"cd emailTemplates/doctor-share-patient && node doctor_share_patient.js",
-    "reset_password":"cd emailTemplates/reset-password && node reset_password.js",
-    "revoke":"cd emailTemplates/revoke && node revoke.js",
-    "welcome":"cd emailTemplates/welcome && node welcome.js",
+    "doctor_patient": "cd emailTemplates/doctor-patient && node doctor_patient.js",
+    "doctor_share_patient": "cd emailTemplates/doctor-share-patient && node doctor_share_patient.js",
+    "reset_password": "cd emailTemplates/reset-password && node reset_password.js",
+    "revoke": "cd emailTemplates/revoke && node revoke.js",
+    "welcome": "cd emailTemplates/welcome && node welcome.js",
     "rebuild": "npm run doctor_patient && npm run doctor_share_patient && npm run reset_password && npm run revoke && npm run welcome"
   },
   "repository": {
