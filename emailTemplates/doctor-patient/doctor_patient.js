@@ -18,8 +18,8 @@ var email = {
       name: 'Khoa Tran',
       intro: [
         '{user name} has requested permission to manage your M3DICINE Stethee Pro health data.',
-        'This is only temporary acccess that will expire in 5 days.',
-        'If you wish to extend {user name}  permanent access to your account, please approve the connection.',
+        'This is only temporary access that will expire in 365 days.',
+        'If you wish to extend {user name} permanent access to your account, please approve the connection.',
         'If you would not like to extend access, you should reject this request.'
       ],
       action:[ {

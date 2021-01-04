@@ -1,6 +1,6 @@
 Hi Khoa Tran,
 
-{user name A} has requested to share your M3DICINE  Stethee Pro account with their colleague : {user nameB}.        
+{user name A} has requested to share your M3DICINE Stethee Pro account with their colleague : {user nameB}.        
 {user name B} will not be able to access your account until you approve this request.        
 
 
@@ -10,4 +10,4 @@ Best Wishes,
 M3DICINE Support Team,
 Stethee
 
-&copy; 2020 <a href="https://stethee.com/" target="_blank">Stethee</a>. All rights reserved.
+&copy; 2021 <a href="https://stethee.com/" target="_blank">Stethee</a>. All rights reserved.

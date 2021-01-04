@@ -17,7 +17,7 @@ var email = {
     body: {
       name: 'Khoa Tran',
       intro: [
-              '{user name A} has requested to share your M3DICINE  Stethee Pro account with their colleague : {user nameB}.',
+              '{user name A} has requested to share your M3DICINE Stethee Pro account with their colleague : {user nameB}.',
               '{user name B} will not be able to access your account until you approve this request.'
             ],
       action:[
