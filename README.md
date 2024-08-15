@@ -67,7 +67,7 @@ require('fs').writeFileSync('preview.html', emailBody, 'utf8');
 
 // `emailBody` now contains the HTML body,
 // and `emailText` contains the textual version.
-// 
+//
 // It's up to you to send the e-mail.
 // Check out nodemailer to accomplish this:
 // https://nodemailer.com/
@@ -129,6 +129,21 @@ var mailGenerator = new Mailgen({
 });
 ```
 
+## Custom Logo Height
+
+To change the default product logo height, set it as follows:
+
+```js
+var mailGenerator = new Mailgen({
+    product: {
+        // Custom product logo URL
+        logo: 'https://mailgen.js/img/logo.png',
+        // Custom logo height
+        logoHeight: '30px'
+    }
+});
+```
+
 ## Language Customizations
 
 To customize the e-mail greeting (Hi) or signature (Yours truly), supply custom strings within the e-mail `body`:
@@ -138,6 +153,17 @@ var email = {
     body: {
         greeting: 'Dear',
         signature: 'Sincerely'
+    }
+};
+```
+
+To not include the signature or greeting at all, set the signature or greeting fields to `false`:
+
+```js
+var email = {
+    body: {
+      signature: false,
+      greeting: false // This will override and disable name & title options
     }
 };
 ```
@@ -163,7 +189,7 @@ var mailGenerator = new Mailgen({
         name: 'Mailgen',
         link: 'https://mailgen.js/',
         // Custom copyright notice
-        copyright: 'Copyright © 2016 Mailgen. All rights reserved.',
+        copyright: `Copyright © ${new Date().getFullYear()} Mailgen. All rights reserved.`,
     }
 });
 ```
@@ -223,7 +249,36 @@ var email = {
                 button: {
                     text: 'Read our FAQ',
                     link: 'https://mailgen.js/faq'
-                }        
+                }
+            }
+        ]
+    }
+};
+```
+
+You can enable a fallback link and instructions for action buttons in case e-mail clients don't render them properly. This can be achieved by setting `button.fallback` to `true`, or  by specifying custom fallback text as follows:
+```js
+var email = {
+    body: {
+        action: [
+            {
+                instructions: 'To get started with Mailgen, please click here:',
+                button: {
+                    color: '#22BC66',
+                    text: 'Confirm your account',
+                    link: 'https://mailgen.js/confirm?s=d9729feb74992cc3482b350163a1a010',
+                    fallback: true
+                }
+            },
+            {
+                instructions: 'To read our frequently asked questions, please click here:',
+                button: {
+                    text: 'Read our FAQ',
+                    link: 'https://mailgen.js/faq',
+                    fallback: {
+                        text: 'This is my custom text for fallback'
+                    }
+                }
             }
         ]
     }
@@ -262,6 +317,71 @@ var email = {
                 }
             }
         }
+    }
+};
+```
+
+To inject multiple tables into the e-mail, supply the `table` property with an array of objects as follows:
+
+```js
+var email = {
+    body: {
+        table: [
+            {
+                // Optionally, add a title to each table.
+                title: 'Order 1',
+                data: [
+                    {
+                        item: 'Item 1',
+                        description: 'Item 1 description',
+                        price: '$1.99'
+                    },
+                    {
+                        item: 'Item 2',
+                        description: 'Item 2 description',
+                        price: '$2.99'
+                    }
+                ],
+                columns: {
+                    // Optionally, customize the column widths
+                    customWidth: {
+                        item: '20%',
+                        price: '15%'
+                    },
+                    // Optionally, change column text alignment
+                    customAlignment: {
+                        price: 'right'
+                    }
+                }
+            },
+            {
+                // Optionally, add a title to each table.
+                title: 'Order 2',
+                data: [
+                    {
+                        item: 'Item 1',
+                        description: 'Item 1 description',
+                        price: '$2.99'
+                    },
+                    {
+                        item: 'Item 2',
+                        description: 'Item 2 description',
+                        price: '$1.99'
+                    }
+                ],
+                columns: {
+                    // Optionally, customize the column widths
+                    customWidth: {
+                        item: '20%',
+                        price: '15%'
+                    },
+                    // Optionally, change column text alignment
+                    customAlignment: {
+                        price: 'right'
+                    }
+                }
+            }
+        ]
     }
 };
 ```

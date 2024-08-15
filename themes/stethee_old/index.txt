@@ -1,4 +1,6 @@
-<%- title %>
+<% if (locals.title) { %>
+    <%- title %>
+<% } %>
 
 <br />
 <br />
@@ -17,7 +19,7 @@
         <%- item.charAt(0).toUpperCase() + item.slice(1) %>: <%- dictionary[item] %>
         <br />
     <% } -%>
-    
+
     <br />
 <% } %>
 
@@ -25,9 +27,11 @@
     <% action.forEach(function (actionItem) { -%>
         <%- actionItem.instructions %>
         <br />
-        <%- actionItem.button.link %>
-        <br />
-        
+        <% actionItem.button.forEach(function (actionButton) { -%>
+            <%- actionButton.link %>
+            <br />
+        <% }) -%>
+
         <br />
     <% }) -%>
 <% } %>
@@ -37,13 +41,15 @@
         <%- outroItem %>
         <br />
     <% }) -%>
-    
+
     <br />
 <% } %>
 
-<%- signature %>,
-<br />
-<%- product.name %>
+<% if (signature) { %>
+  <%- signature %>,
+  <br />
+  <%- product.name %>
+<% } %>
 
 <br />
 <br />

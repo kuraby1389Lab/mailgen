@@ -1,3 +1,4 @@
+var he = require('he');
 var fs = require('fs');
 var ejs = require('ejs');
 var juice = require('juice');
@@ -29,18 +30,28 @@ function Mailgen(options) {
     this.cacheThemes();
 }
 
-function convertToArray(data) {
-    // Convert object to array
-    if (data && data.constructor !== Array) {
-        return [data];
+function convertToArray(arr) {
+    return Array.isArray(arr) ? arr : [arr].filter(Boolean)
+}
+
+function setupButtonFallbackText(btn) {
+    // No fallback or false passed in?
+    if (!btn.fallback) {
+        return;
     }
 
-    return data;
+    // Default fallback text requested?
+    if (btn.fallback === true) {
+        btn.fallback = {
+            text: `If you're having trouble clicking the "${btn.text}" button, please copy and paste the following link into your web browser's address bar:`
+        };
+    }
 }
 
 Mailgen.prototype.cacheThemes = function () {
     // Build path to theme file (make it possible to pass in a custom theme path, fallback to mailgen-bundled theme)
     var themePath = (typeof this.theme === 'object' && this.theme.path) ? this.theme.path : __dirname + '/themes/' + this.themeName + '/index.html';
+
 
     // Bad theme path?
     if (!fs.existsSync(themePath)) {
@@ -58,6 +69,9 @@ Mailgen.prototype.cacheThemes = function () {
         throw new Error('You have specified an invalid plaintext theme.');
     }
 
+    // Keep this for referencing in ejs.render()
+    this.themePath = themePath;
+
     // Load plaintext theme (sync) and cache it for later
     this.cachedPlaintextTheme = fs.readFileSync(plaintextPath, 'utf8');
 };
@@ -68,7 +82,7 @@ Mailgen.prototype.generate = function (params) {
     var ejsParams = this.parseParams(params);
 
     // Render the theme with ejs, injecting the data accordingly
-    var output = ejs.render(this.cachedTheme, ejsParams);
+    var output = ejs.render(this.cachedTheme, ejsParams, { filename: this.themePath });
 
     // Inline CSS
     output = juice(output);
@@ -101,6 +115,12 @@ Mailgen.prototype.generatePlaintext = function (params) {
         output = output.replace(/^(?: |\t)*/gm, "");
     }
 
+    // Strip all HTML tags from plaintext output
+    output = output.replace(/<.+?>/g, '');
+
+    // Decode HTML entities such as &copy;
+    output = he.decode(output);
+
     // All done!
     return output;
 };
@@ -123,20 +143,40 @@ Mailgen.prototype.parseParams = function (params) {
     // Pass text direction to template
     body.textDirection = this.textDirection;
 
-    // Support for custom greeting/signature (fallback to sensible defaults)
-    body.greeting = body.greeting || 'Hi';
-    body.signature = body.signature || 'Yours truly';
+    // Only set greeting if greeting is not false (allow any greeting (name & title) to be optional)
+    // Setting greeting to false will override title and name options
+    if (body.greeting !== false) {
+        // Support for custom greeting/signature (fallback to sensible defaults)
+        body.greeting = body.greeting || 'Hi';
 
-    // Use `greeting` and `name` for title if not set
-    if (!body.title) {
-        // Use name if provided, otherwise, default to greeting only
-        body.title = (body.name ? body.greeting + ' ' + body.name : body.greeting) + ',';
+        // Use `greeting` or `name` for title if not set
+        if (!body.title) {
+            // Use name if provided, otherwise, default to greeting only
+            body.title = (body.name ? body.greeting + ' ' + body.name : body.greeting) + ',';
+        }
+    }
+
+    // Only set signature if signature is not false
+    if (body.signature !== false) {
+        body.signature = body.signature || 'Yours truly';
     }
 
     // Convert intro, outro, and action to arrays if a string or object is used instead
-    body.intro  = convertToArray(body.intro);
-    body.outro  = convertToArray(body.outro);
+    body.intro = convertToArray(body.intro);
+    body.outro = convertToArray(body.outro);
     body.action = convertToArray(body.action);
+
+    // Enable multiple buttons per action
+    for (var action of body.action) {
+        action.button = convertToArray(action.button);
+
+        // Set up default button fallback text
+        for (var button of action.button) {
+            setupButtonFallbackText(button);
+        }
+    }
+
+    body.table = convertToArray(body.table);
 
     // Prepare data to be passed to ejs engine
     var ejsParams = {

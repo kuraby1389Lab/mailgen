@@ -1,8 +1,9 @@
 {
   "name": "mailgen",
-  "version": "2.0.8",
+  "version": "2.0.28",
   "description": "Generates clean, responsive HTML e-mails for sending transactional mail.",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "doctor_patient": "cd emailTemplates/doctor-patient && node doctor_patient.js",
@@ -23,7 +24,8 @@
   },
   "homepage": "https://github.com/eladnava/mailgen#readme",
   "dependencies": {
-    "ejs": "^2.6.1",
-    "juice": "^5.2.0"
+    "ejs": "^3.1.6",
+    "he": "^1.2.0",
+    "juice": "^8.0.0"
   }
 }
