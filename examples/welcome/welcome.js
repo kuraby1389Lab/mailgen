@@ -1,4 +1,4 @@
-var Mailgen = require('../');
+var Mailgen = require('../../');
 
 // Configure mailgen by setting a theme and your product info
 var mailGenerator = new Mailgen({
